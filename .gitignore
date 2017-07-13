@@ -2,6 +2,7 @@
 .vs
 Library
 *.userprefs
+Temp
 
 # Prerequisites
 *.d
