@@ -1,3 +1,8 @@
+# Unity files
+.vs
+Library
+*.userprefs
+
 # Prerequisites
 *.d
 
