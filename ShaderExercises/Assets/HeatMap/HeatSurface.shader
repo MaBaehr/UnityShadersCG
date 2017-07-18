@@ -3,10 +3,10 @@ Shader "CGTestat/HeatSurface"
 {
 	Properties
 	{
-		_WindSourcePosition ("Wind Source Position",Vector) = (0,0,0)
+		_HeatSourcePosition ("Heat Source Position",Vector) = (0,0,0)
 		_Color("Color",Color) = (0,0,0,1)
 		_Distance("Distance", float) = 0
-		_Temperature("Temperature", float) = 0
+		_Energy("Energy", float) = 0
 	}
 
 	CGINCLUDE	
@@ -67,7 +67,7 @@ Shader "CGTestat/HeatSurface"
 				fixed4 color : COLOR;
 			};
 
-			float4 _WindSourcePosition;
+			float4 _HeatSourcePosition;
 			float4 _WindSourceVector;
 			float4 _Color;
 			float _Distance;
@@ -75,10 +75,10 @@ Shader "CGTestat/HeatSurface"
 			v2f vert (appdata_base v)
 			{
 				v2f o;
-				//o.vertex = UnityObjectToClipPos(v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				float4 worldVertex = mul(unity_ObjectToWorld, v.vertex);
-				float4 windDirection = worldVertex - _WindSourcePosition;
-				float distance = length(worldVertex - _WindSourcePosition);				
+				float4 windDirection = worldVertex - _HeatSourcePosition;
+				float distance = length(worldVertex - _HeatSourcePosition);				
 
 				float4 newWorldVertex = worldVertex;
 				float crossProduct = dot(windDirection, -v.normal);
@@ -87,18 +87,13 @@ Shader "CGTestat/HeatSurface"
 				newWorldVertex = worldVertex + ((1*force)*windDirection);
 				
 				o.color = getColorForDistance(distance / 10);
-				o.vertex = mul(UNITY_MATRIX_VP, newWorldVertex);
-				UNITY_TRANSFER_FOG(o,o.vertex);
+
 				return o;
 			}
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				// sample the texture
-				//fixed4 col = _Color;
 				fixed4 col = i.color;
-				// apply fog
-				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
 			}
 
