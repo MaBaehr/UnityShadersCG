@@ -93,9 +93,17 @@ Shader "CGTestat/HeatSurface"
 				//newWorldVertex = worldVertex + ((1*force)*heatDirection);
 
 
+
 				float incomingEnergy = _HeatSourceEnergy / (4 * PI * distance * distance);
 				incomingEnergy = incomingEnergy * (1 - _AbsorbtionPercentage);
-				o.color = getColorForDistance(incomingEnergy);
+				
+				
+				float dotProduct = dot(heatDirection, - v.normal);
+				float heatDirectionMagniture = length(heatDirection);
+				float normalMagnitude = length(v.normal);
+				float angle = dotProduct / (heatDirectionMagniture * normalMagnitude);
+
+				o.color = getColorForDistance(incomingEnergy  * angle);
 
 				return o;
 			}
