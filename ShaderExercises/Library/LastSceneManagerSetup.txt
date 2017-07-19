@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/PreparedState.unity
+- path: Assets/_Scenes/ChangeCameraSimulationByKeyboard.unity
   isLoaded: 1
   isActive: 1
