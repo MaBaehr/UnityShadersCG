@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HeatTarget : MonoBehaviour {
 
+
+    [Range(0.0f, 1.0f)]
+    public float absorbtionPercentage;
     public GameObject heatSource;
 
 	// Use this for initialization
@@ -24,9 +27,9 @@ public class HeatTarget : MonoBehaviour {
 
             HeatSimulator heatSimulator = heatSource.GetComponent<HeatSimulator>();
             
-            this.GetComponent<MeshRenderer>().material.SetFloat("_Energy", heatSimulator.totalEnergy);
+            this.GetComponent<MeshRenderer>().material.SetFloat("_HeatSourceEnergy", heatSimulator.totalEnergy);
             this.GetComponent<MeshRenderer>().material.SetFloat("_Distance", distance);
-
+            this.GetComponent<MeshRenderer>().material.SetFloat("_AbsorbtionPercentage", absorbtionPercentage);
         }
     }
 }
