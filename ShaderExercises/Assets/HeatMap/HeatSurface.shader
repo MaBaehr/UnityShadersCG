@@ -4,9 +4,10 @@ Shader "CGTestat/HeatSurface"
 	Properties
 	{
 		_HeatSourcePosition ("Heat Source Position",Vector) = (0,0,0)
-		_Color("Color",Color) = (0,0,0,1)
+		//_Color("Color",Color) = (0,0,0,1)
 		_Distance("Distance", float) = 0
-		_Energy("Energy", float) = 0
+		_HeatSourceEnergy("Heat Source Energy", float) = 0
+		_AbsorbtionPercentage("Absorbtion Percentage", float) = 0
 	}
 
 	CGINCLUDE	
@@ -22,7 +23,7 @@ Shader "CGTestat/HeatSurface"
 				
 				if (distance <= 0) { idx1 = idx2 = 0; }
 				else {
-					if (distance >= 1) {idx1 = idx2 = numberOfColors; }
+					if (distance >= 1) {idx1 = idx2 = numberOfColors - 1; }
 					else {
 						distance = distance * (numberOfColors - 1);
 						idx1 = (int) distance;
@@ -32,9 +33,9 @@ Shader "CGTestat/HeatSurface"
 					}
 				}
 					
-				float blue = (color[idx2][0] - color[idx1][0])*fractBetween + color[idx1][0];
+				float red = (color[idx2][0] - color[idx1][0])*fractBetween + color[idx1][0];
 				float green = (color[idx2][1] - color[idx1][1])*fractBetween + color[idx1][1];
-				float red = (color[idx2][2] - color[idx1][2])*fractBetween + color[idx1][2];								
+				float blue = (color[idx2][2] - color[idx1][2])*fractBetween + color[idx1][2];								
 				return fixed4(red, green, blue, 1);
 			}
 
@@ -68,25 +69,41 @@ Shader "CGTestat/HeatSurface"
 			};
 
 			float4 _HeatSourcePosition;
-			float4 _WindSourceVector;
-			float4 _Color;
+			//float4 _WindSourceVector;
+			//float4 _Color;
 			float _Distance;
+			float _HeatSourceEnergy;
+			float _AbsorbtionPercentage;
 			
 			v2f vert (appdata_base v)
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
+
+				const float PI = 3.14159;
+
 				float4 worldVertex = mul(unity_ObjectToWorld, v.vertex);
-				float4 windDirection = worldVertex - _HeatSourcePosition;
+				float4 heatDirection = worldVertex - _HeatSourcePosition;
 				float distance = length(worldVertex - _HeatSourcePosition);				
 
 				float4 newWorldVertex = worldVertex;
-				float crossProduct = dot(windDirection, -v.normal);
-				float force = 1 / (2 * distance);				
+				float crossProduct = dot(heatDirection, -v.normal);
+				//float force = 1 / (2 * distance);				
 
-				newWorldVertex = worldVertex + ((1*force)*windDirection);
+				//newWorldVertex = worldVertex + ((1*force)*heatDirection);
+
+
+
+				float incomingEnergy = _HeatSourceEnergy / (4 * PI * distance * distance);
+				incomingEnergy = incomingEnergy * (1 - _AbsorbtionPercentage);
 				
-				o.color = getColorForDistance(distance / 10);
+				
+				float dotProduct = dot(heatDirection, - v.normal);
+				float heatDirectionMagniture = length(heatDirection);
+				float normalMagnitude = length(v.normal);
+				float angle = dotProduct / (heatDirectionMagniture * normalMagnitude);
+
+				o.color = getColorForDistance(incomingEnergy  * angle);
 
 				return o;
 			}

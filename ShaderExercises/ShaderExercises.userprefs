@@ -1,11 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shader/Greyscale.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shader/DistanceToCamera.shader">
     <Files>
+      <File FileName="Assets/Shader/NormalShader.shader" Line="66" Column="17" />
       <File FileName="Assets/Scripts/VorlesungCameraController.cs" Line="1" Column="26" />
-      <File FileName="Assets/Shader/GrayscaleShader.shader" Line="45" Column="4" />
-      <File FileName="Assets/Shader/SimpleColorShader.shader" Line="1" Column="9" />
-      <File FileName="Assets/Shader/Greyscale.shader" Line="46" Column="2" />
+      <File FileName="Assets/Shader/GrayscaleShader.shader" Line="1" Column="1" />
+      <File FileName="Assets/Shader/SimpleColorShader.shader" Line="1" Column="1" />
+      <File FileName="Assets/Shader/GreyscaleColorShader.shader" Line="13" Column="6" />
+      <File FileName="Assets/Shader/GreyscaleNormalShader.shader" Line="68" Column="17" />
+      <File FileName="Assets/Shader/DistanceToCamera.shader" Line="54" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

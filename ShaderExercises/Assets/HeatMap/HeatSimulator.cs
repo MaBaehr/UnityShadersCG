@@ -14,7 +14,7 @@ public class HeatSimulator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        temperature = 40;
 	}
 	
 	// Update is called once per frame

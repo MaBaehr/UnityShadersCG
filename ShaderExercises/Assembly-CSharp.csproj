@@ -50,10 +50,12 @@
      <Compile Include="Assets\HeatMap\HeatTarget.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\VorlesungCameraController.cs" />
-     <None Include="Assets\Shader\Greyscale.shader" />
+     <None Include="Assets\Shader\GreyscaleNormalShader.shader" />
+     <None Include="Assets\Shader\GreyscaleColorShader.shader" />
      <None Include="Assets\Shader\GrayscaleShader.shader" />
      <None Include="Assets\HeatMap\HeatSurface.shader" />
      <None Include="Assets\Shader\SimpleColorShader.shader" />
+     <None Include="Assets\Shader\DistanceToCamera.shader" />
      <None Include="Assets\Shader\NormalShader.shader" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
