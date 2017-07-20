@@ -4,8 +4,6 @@ Shader "CGTestat/HeatSurface"
 	Properties
 	{
 		_HeatSourcePosition ("Heat Source Position",Vector) = (0,0,0)
-		//_Color("Color",Color) = (0,0,0,1)
-		_Distance("Distance", float) = 0
 		_HeatSourceEnergy("Heat Source Energy", float) = 0
 		_AbsorbtionPercentage("Absorbtion Percentage", float) = 0
 	}
@@ -51,27 +49,16 @@ Shader "CGTestat/HeatSurface"
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			// make fog work
-			#pragma multi_compile_fog
 			
 			#include "UnityCG.cginc"			
 
-			struct appdata
-			{
-				float4 vertex : POSITION;
-			};
-
 			struct v2f
 			{
-				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 				fixed4 color : COLOR;
 			};
 
 			float4 _HeatSourcePosition;
-			//float4 _WindSourceVector;
-			//float4 _Color;
-			float _Distance;
 			float _HeatSourceEnergy;
 			float _AbsorbtionPercentage;
 			
@@ -82,29 +69,22 @@ Shader "CGTestat/HeatSurface"
 
 				const float PI = 3.14159;
 
+				// calculate distance to heat source
 				float4 worldVertex = mul(unity_ObjectToWorld, v.vertex);
 				float4 heatDirection = worldVertex - _HeatSourcePosition;
 				float distance = length(worldVertex - _HeatSourcePosition);				
-
-				float4 newWorldVertex = worldVertex;
-				float crossProduct = dot(heatDirection, -v.normal);
-				//float force = 1 / (2 * distance);				
-
-				//newWorldVertex = worldVertex + ((1*force)*heatDirection);
-
-
-
+					
+				// apply absorbtion percentage
 				float incomingEnergy = _HeatSourceEnergy / (4 * PI * distance * distance);
 				incomingEnergy = incomingEnergy * (1 - _AbsorbtionPercentage);
 				
-				
-				float dotProduct = dot(heatDirection, - v.normal);
+				// calculate heat depending on angle
+				float crossProduct = dot(heatDirection, -v.normal);
 				float heatDirectionMagniture = length(heatDirection);
 				float normalMagnitude = length(v.normal);
-				float angle = dotProduct / (heatDirectionMagniture * normalMagnitude);
+				float angle = crossProduct / (heatDirectionMagniture * normalMagnitude);
 
 				o.color = getColorForDistance(incomingEnergy  * angle);
-
 				return o;
 			}
 			

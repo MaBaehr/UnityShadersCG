@@ -14,13 +14,15 @@ public class HeatSimulator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        temperature = 40;
+        // initial temperature at game start
+        temperature = 80;
 	}
 	
 	// Update is called once per frame
-	void Update () {        
-        surfaceSize = (4 / 3) * Mathf.PI * radius;
+	void Update () {
 
+        // calculate energy based on size
+        surfaceSize = (4 / 3) * Mathf.PI * radius;
         totalEnergy = surfaceSize * bolzmannConst * Mathf.Pow(temperature, 4);
 	}
 }
