@@ -72,19 +72,18 @@ Shader "CGTestat/HeatSurface"
 				// calculate distance to heat source
 				float4 worldVertex = mul(unity_ObjectToWorld, v.vertex);
 				float4 heatDirection = worldVertex - _HeatSourcePosition;
-				float distance = length(worldVertex - _HeatSourcePosition);				
+				float distance = length(heatDirection);				
 					
 				// apply absorbtion percentage
 				float incomingEnergy = _HeatSourceEnergy / (4 * PI * distance * distance);
 				incomingEnergy = incomingEnergy * (1 - _AbsorbtionPercentage);
 				
 				// calculate heat depending on angle
-				float crossProduct = dot(heatDirection, -v.normal);
-				float heatDirectionMagniture = length(heatDirection);
+				float crossProduct = dot(heatDirection, v.normal);				
 				float normalMagnitude = length(v.normal);
-				float angle = crossProduct / (heatDirectionMagniture * normalMagnitude);
+				float angle = crossProduct / (distance * normalMagnitude);
 
-				o.color = getColorForDistance(incomingEnergy  * angle);
+				o.color = getColorForDistance(incomingEnergy  * cos(angle));
 				return o;
 			}
 			
