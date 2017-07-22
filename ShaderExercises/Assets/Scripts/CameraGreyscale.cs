@@ -7,10 +7,10 @@ public class CameraGreyscale : MonoBehaviour {
 
 	public Material EffectMatierial;
 
-	void OnRenderImage(RenderTexture src, RenderTexture dst)
-	{
-		Graphics.Blit (src, dst, EffectMatierial);
-	}
+	//void OnRenderImage(RenderTexture src, RenderTexture dst)
+	//{
+		//Graphics.Blit (src, dst, EffectMatierial);
+	//}
 
 
 }

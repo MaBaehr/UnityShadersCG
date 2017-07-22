@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
-	public float speed = 1f;
+	public float speed = 10f;
 	public float sensitivity = 10.0f;
 	//public bool inverted = false;
 	public string mouseHorizontalAxisName = "Mouse X";

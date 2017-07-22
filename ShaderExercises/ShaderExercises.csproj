@@ -82,6 +82,8 @@
     <Compile Include="Assets\HeatMap\HeatTarget.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraGreyscale.cs" />
+    <Compile Include="Assets\Scripts\ShaderChange.cs" />
+    <Compile Include="Assets\Scripts\ShaderChangeManager.cs" />
     <Compile Include="Assets\Scripts\VorlesungCameraController.cs" />
   </ItemGroup>
   <ItemGroup>
