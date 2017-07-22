@@ -5,26 +5,61 @@ using UnityEngine;
 public class ShaderChange : MonoBehaviour {
 
 	public static Shader distanceShader;
+	public static Shader heatShader;
+	public static Shader originalShader;
 	public Renderer renderer1;
 
-	void Enable()
+	void OnEnable()
 	{
-		ShaderChangeManager.KeyPressed += ChangeToDistanceShader;
+		EventManager.Key0Pressed += ChangeToOriginalShader;
+		EventManager.Key1Pressed += ChangeToGreyScaleShader;
+		EventManager.Key2Pressed += ChangeToDistanceShader;
+		EventManager.Key3Pressed += ChangeToHeatMapShader;
+
+		renderer1 = GetComponent<Renderer>();
+		originalShader = renderer1.material.shader;
 	}
 
-	void Disable()
+	void OnDisable()
 	{
-		ShaderChangeManager.KeyPressed -= ChangeToDistanceShader;
+		EventManager.Key0Pressed -= ChangeToOriginalShader;
+		EventManager.Key1Pressed -= ChangeToGreyScaleShader;
+		EventManager.Key2Pressed -= ChangeToDistanceShader;
+		EventManager.Key3Pressed -= ChangeToHeatMapShader;	}
+
+	void ChangeToOriginalShader()
+	{
+		distanceShader = originalShader;
+
+		if (renderer1.material.shader != distanceShader) 
+		{
+			renderer1.material.shader = distanceShader;
+		}
+	}
+
+	void ChangeToGreyScaleShader()
+	{
+		
 	}
 
 	void ChangeToDistanceShader()
 	{
-		distanceShader = Shader.Find("Diffuse");
-		renderer1 = GetComponent<Renderer>();
+		distanceShader = Shader.Find("CGTestat/DistanceToCamera");
 
-		//if (renderer1.material.shader != distanceShader) 
-		//{
-		renderer1.material.shader = distanceShader;
-		//}
+		if (renderer1.material.shader != distanceShader) 
+		{
+			renderer1.material.shader = distanceShader;
+		}
 	}
+
+	void ChangeToHeatMapShader()
+	{
+		heatShader = Shader.Find("CGTestat/HeatSurface");
+
+		if (renderer1.material.shader != heatShader) 
+		{
+			renderer1.material.shader = heatShader;
+		}
+	}
+
 }
