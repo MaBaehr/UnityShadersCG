@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
-	public float speed = 50.0f;
+	public float speed = 1f;
 	public float sensitivity = 10.0f;
 	//public bool inverted = false;
 	public string mouseHorizontalAxisName = "Mouse X";
@@ -41,8 +41,15 @@ public class CameraController : MonoBehaviour {
 		//
 		//		//pitch
 		float rotationY = Input.GetAxis(mouseVerticalAxisName) * sensitivity;
+
+		Vector3 euler = transform.eulerAngles;
+		euler.z = transform.eulerAngles.z;
 		//transform.Rotate(-rotationY, 0, 0);
-		transform.Rotate(-rotationY,rotationX,0);
+		transform.Rotate(-rotationY,rotationX,-euler.z);
+
+
+
+		//float rotationZ = transform.eulerAngles.rotationZ;
 		//
 		//
 
@@ -50,16 +57,16 @@ public class CameraController : MonoBehaviour {
 		Vector3 dir = new Vector3 ();
 
 		if (Input.GetKey (KeyCode.UpArrow)) {
-			dir.z += 1.0f;
+			dir.z += speed;
 		}
 		if (Input.GetKey (KeyCode.DownArrow)){
-			dir.z -= 1.0f;
+			dir.z -= speed;
 		}
 		if (Input.GetKey (KeyCode.LeftArrow)){
-			dir.x -= 1.0f;
+			dir.x -= speed;
 		}
 		if (Input.GetKey (KeyCode.RightArrow)){
-			dir.x += 1.0f;
+			dir.x += speed;
 		}
 		dir.Normalize ();
 
