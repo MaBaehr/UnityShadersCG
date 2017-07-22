@@ -1,14 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shader/DistanceToCamera.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shader\GreyscaleShaders\GreyscaleTextureShader.shader">
     <Files>
-      <File FileName="Assets/Shader/NormalShader.shader" Line="66" Column="17" />
-      <File FileName="Assets/Scripts/VorlesungCameraController.cs" Line="1" Column="26" />
-      <File FileName="Assets/Shader/GrayscaleShader.shader" Line="1" Column="1" />
-      <File FileName="Assets/Shader/SimpleColorShader.shader" Line="1" Column="1" />
-      <File FileName="Assets/Shader/GreyscaleColorShader.shader" Line="13" Column="6" />
-      <File FileName="Assets/Shader/GreyscaleNormalShader.shader" Line="68" Column="17" />
-      <File FileName="Assets/Shader/DistanceToCamera.shader" Line="54" Column="26" />
+      <File FileName="Assets\Shader\NormalShader.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\VorlesungCameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Shader\SimpleColorShader.shader" Line="1" Column="1" />
+      <File FileName="Assets\Shader\DistanceToCamera.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ShaderChange.cs" Line="27" Column="29" />
+      <File FileName="Assets\Scripts\EventManager.cs" Line="25" Column="3" />
+      <File FileName="Assets\Shader\GreyscaleShaders\CameraGreyscale.shader" Line="38" Column="27" />
+      <File FileName="Assets\Shader\GreyscaleShaders\GrayscaleShader.shader" Line="1" Column="1" />
+      <File FileName="Assets\Shader\GreyscaleShaders\GreyscaleColorShader.shader" Line="27" Column="14" />
+      <File FileName="Assets\Shader\GreyscaleShaders\GreyscaleNormalShader.shader" Line="58" Column="26" />
+      <File FileName="Assets\Shader\GreyscaleShaders\GreyscaleTextureShader.shader" Line="24" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
