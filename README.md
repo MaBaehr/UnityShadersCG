@@ -1,11 +1,9 @@
 # UnityShadersCG
-Unity Shader Exercises for our University Attestion in the course 'Computer Grafik' (computer graphics)
+Unity Shader Exercises for TIT14
 
-## Strukturierungsidee!
-Zuerst muss eine Landschaft (Umgebung) aufgebaut werden, für alle Aufgaben zusammen (einfach mehrere Objekte mit Standardshadern)
+Controls: Arrow Keys to move the camera, numeric alpha keys 0-3 to change shader mode
 
-Danach für jede Aufgabe eine neue !Scene!, kein gesamtes Projekt
-
+Members:
 Timo Schnizer 82544649
 Manuel Bähr 6829658
 Alban Nocaj 5008139
