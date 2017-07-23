@@ -8,6 +8,8 @@ public class ShaderChange : MonoBehaviour {
 	public static Shader heatShader;
 	public static Shader originalShader;
 	public Renderer renderer1;
+	public MonoBehaviour greyScript;
+	public GameObject cam;
 
 	void OnEnable()
 	{
@@ -18,6 +20,12 @@ public class ShaderChange : MonoBehaviour {
 
 		renderer1 = GetComponent<Renderer>();
 		originalShader = renderer1.material.shader;
+		distanceShader = Shader.Find("CGTestat/DistanceToCamera");
+		heatShader = Shader.Find("CGTestat/HeatSurface");
+
+		cam = GameObject.Find ("Main Camera");
+		greyScript = cam.GetComponent<CameraGreyscale> ();
+
 	}
 
 	void OnDisable()
@@ -29,23 +37,21 @@ public class ShaderChange : MonoBehaviour {
 
 	void ChangeToOriginalShader()
 	{
-		distanceShader = originalShader;
-
-		if (renderer1.material.shader != distanceShader) 
+		greyScript.enabled = false;
+		if (renderer1.material.shader != originalShader) 
 		{
-			renderer1.material.shader = distanceShader;
+			renderer1.material.shader = originalShader;
 		}
 	}
 
 	void ChangeToGreyScaleShader()
 	{
-		
+		greyScript.enabled = true;
 	}
 
 	void ChangeToDistanceShader()
-	{
-		distanceShader = Shader.Find("CGTestat/DistanceToCamera");
-
+	{		
+		greyScript.enabled = false;
 		if (renderer1.material.shader != distanceShader) 
 		{
 			renderer1.material.shader = distanceShader;
@@ -54,8 +60,7 @@ public class ShaderChange : MonoBehaviour {
 
 	void ChangeToHeatMapShader()
 	{
-		heatShader = Shader.Find("CGTestat/HeatSurface");
-
+		greyScript.enabled = false;
 		if (renderer1.material.shader != heatShader) 
 		{
 			renderer1.material.shader = heatShader;
