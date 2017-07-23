@@ -8,3 +8,5 @@ Danach für jede Aufgabe eine neue !Scene!, kein gesamtes Projekt
 
 Timo Schnizer 82544649
 Manuel Bähr 6829658
+Alban Nocaj 5008139
+Kevin Schwab 6270606
