@@ -46,6 +46,10 @@ public class ShaderChange : MonoBehaviour {
 
 	void ChangeToGreyScaleShader()
 	{
+		if (renderer1.material.shader != originalShader) 
+		{
+			renderer1.material.shader = originalShader;
+		}
 		greyScript.enabled = true;
 	}
 
